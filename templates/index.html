@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+
+
+<title>Movie Recommender</title>
+
+<!-- Reference: https://github.com/yukti99/Movie-Recommendation-Flask-App/blob/master/templates/index.html -->
+
+<h1>Movie Recommender</h1>
+
+<!--    - form method attribute specifies how to send form data.
+        method="POST" specifies to it send as HTTP post transaction
+        - form action tells app where (which URL) to send the input when form is submitted.
+            in this case, redirects to the recommend_movies endpoint in app.py (i.e. URl '/recs') -->
+<form action="{{ url_for('recommend_movies') }}" method='POST'>
+    <!-- where user inputs movie name and rating -->
+    <input type="text" name="movie" required>
+    <input type="submit" value="Recommend!">
+
+</form>
+</html>
