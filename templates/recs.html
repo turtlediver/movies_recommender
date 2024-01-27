@@ -20,23 +20,41 @@
         padding: 10px;
         margin: 10px;
       }
-    .grid-container {
-        display: grid;
-        grid-template-columns: auto auto auto;
-    }
+      .card {
+        /* resize the card so the entire poster image will show */
+        width: 18rem;
+        height: 25rem;
+      }
+      .card:hover .overlay {
+        opacity: 1;
+      }
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: #008CBA;
+      }
 </style>
 
 <title>Movie Recommender</title>
 
 <!-- Reference: https://github.com/yukti99/Movie-Recommendation-Flask-App/blob/master/templates/index.html -->
 
+<div class="container-fluid text-center container pt-5">
+
 <h1>Movies you may like:</h1>
 
 
 <script> 
              
-      
-    const options = {
+    //API key is here
+    const tmdb_options = {
        method: 'GET',
        headers: {
        accept: 'application/json',
@@ -46,17 +64,34 @@
 </script>
 
 <!--NOTE: each value in the recs_data dict is the index of the movie in the dataframe-->
-<div class="grid-container">
+<div class="grid">
+    <!--row-cols-md-3 specifies 3 columns per row-->
+    <div class="row row-cols-1 row-cols-md-3">
     {%for movie_index in recs_data%} 
         
-        <div class="box" id="image_{{movie_index}}"></div>
+        <!--make a new row each time we fill a row with 3 movies-->
+            
+                <div class="col md-5 d-flex justify-content-center"">
+                    <div class="card" id="image_{{loop.index0}}">
+                        <!-- <img class="card-img-top img-fluid" id="image_{{loop.index0}} > -->
+
+
+                        <div class="overlay">
+                            <div class="text">{{recs_data[movie_index]['title']}}</div>
+                        </div>
+
+                    </div>
+                </div>
+    
+
+        
 
         <!--{{recs_data[movie_index]}}-->
 
         <!-- use TMDB API to get movie posters-->
             <script>
         
-            /*
+            /* ##declaring const options here leads to error cuz this runs every loop...but we can only declare a const once!
             const options = {
                 method: 'GET',
                 headers: {
@@ -64,7 +99,7 @@
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMzUxYTEwMjZiMDU3NTMyZDIyNTQ4MGE2OTUzZmU5MCIsInN1YiI6IjY1YTQ5N2UxNjBjNTFkMDEyODVhZWQ4YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QZ76efhsYyGqwYLYZ486rGLCiQydUXQYIgY8-gQUEOo'
                 }
             };  */
-            fetch('https://api.themoviedb.org/3/search/movie?query={{recs_data[movie_index]['clean_title']}}', options)
+            fetch('https://api.themoviedb.org/3/search/movie?query={{recs_data[movie_index]['clean_title']}}', tmdb_options)
                 .then(response => response.json())
                 .then((response) => {
                     console.log(response); //testing
@@ -75,18 +110,21 @@
                     var poster_url = "url('https://image.tmdb.org/t/p/original" + poster_path + " ')";
                     
                     //set the poster as background image
-                    document.getElementById('image_{{movie_index}}').style.backgroundImage = poster_url;
-                    document.getElementById('image_{{movie_index}}').style.backgroundRepeat = "no-repeat";
-                    document.getElementById('image_{{movie_index}}').style.backgroundSize = "cover";
+                    document.getElementById('image_{{loop.index0}}').style.backgroundImage = poster_url;
+                    document.getElementById('image_{{loop.index0}}').style.backgroundRepeat = "no-repeat";
+                    document.getElementById('image_{{loop.index0}}').style.backgroundSize = "cover";
 
                 })
                 .catch(err => console.error(err));
 
         </script>
+        
             
     {%endfor%} 
+    </div>
 </div>
 
+</div>
 
 
 
