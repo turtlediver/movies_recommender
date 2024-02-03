@@ -44,7 +44,7 @@ def recommend_movies():
 
         recs = recommendation.find_similar_movies(int(movie_id))
 
-        return render_template("recs.html", recs_data = recs.to_dict('index'))
+        return render_template("recs.html", recs_data = recs.to_dict('index'), query_movie_title=search_result.iloc[0]['title'])
         #jsonify(recs.to_dict(orient='index'))
 
     elif request.method=="GET":
