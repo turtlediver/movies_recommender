@@ -16,11 +16,6 @@ import recommendation
 #instantiate the application
 app = Flask(__name__)
 
-#enable CORS policy on our API
-#CORS(app)
-
-languages = [{'name': 'JavaScript'}, {'name': 'Python'}, {'name': 'Ruby'}]
-
 
 @app.route('/', methods=["GET"])
 def home():
@@ -51,22 +46,6 @@ def recommend_movies():
         #returns a list of dictionaries. each dictionary is 1 row (i.e. 1 movie) in the recs dataframe
         # - the key is the movie's index in the movies dataframe
         return render_template("index.html")
-    
-
-@app.route('/lang', methods=['GET', 'POST'])
-def returnAll():
-    #returns a dictionary with value languages
-    return jsonify({'languages' : languages})
-
-@app.route('/lang/<string:name>', methods=['GET'])
-#the name parameter here is the same as the name in <string:name> in the URL
-#  - e.g. 
-def returnOne(name):
-    langs = [language for language in languages if language['name'] == name]
-    return jsonify({'language':langs[0]})
-
-
-
 
 
 #if we call this app from the cmdline (as "python app.py"), 
@@ -75,6 +54,3 @@ if __name__ == '__main__':
     #When it runs, this application binds to all IPs on the system (“0.0.0.0”) 
     # and listens on port 5000, which is the default Flask port.
     app.run(debug=True, host='0.0.0.0', port=5000)
-
-    #app.debug == True
-    #app.run()
