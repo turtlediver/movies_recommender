@@ -57,7 +57,7 @@
        method: 'GET',
        headers: {
        accept: 'application/json',
-       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMzUxYTEwMjZiMDU3NTMyZDIyNTQ4MGE2OTUzZmU5MCIsInN1YiI6IjY1YTQ5N2UxNjBjNTFkMDEyODVhZWQ4YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QZ76efhsYyGqwYLYZ486rGLCiQydUXQYIgY8-gQUEOo'
+       Authorization: '{{TMDB_API_KEY}}'
        }
     };
 
@@ -65,12 +65,15 @@
     var rec_movie = '';
     var query_movie_title = '{{query_movie_title}}';
 
+    console.log(COHERE_API_KEY);
+    console.log(TMDB_API_KEY);
+
     var cohere_options = {
         "method": "POST",
         "headers": {
             "accept": "application/json",
             "content-type": "application/json",
-            "authorization": 'Bearer ErqsJSEk96x6cKeIzcd9fmFY1rXxG2D1OcVJNxxl'
+            "authorization": '{{COHERE_API_KEY}}'
         },
          // These are the chat endpt paramters.
             // Reference: https://docs.cohere.com/reference/chat
@@ -123,7 +126,7 @@
                 method: 'GET',
                 headers: {
                 accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMzUxYTEwMjZiMDU3NTMyZDIyNTQ4MGE2OTUzZmU5MCIsInN1YiI6IjY1YTQ5N2UxNjBjNTFkMDEyODVhZWQ4YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QZ76efhsYyGqwYLYZ486rGLCiQydUXQYIgY8-gQUEOo'
+                Authorization: ,
                 }
             };  */
             fetch('https://api.themoviedb.org/3/search/movie?query={{recs_data[movie_index]['clean_title']}}', tmdb_options)
@@ -154,7 +157,7 @@
                 "headers": {
                     "accept": "application/json",
                     "content-type": "application/json",
-                    "authorization": 'Bearer ErqsJSEk96x6cKeIzcd9fmFY1rXxG2D1OcVJNxxl'
+                    "authorization": '{{TMDB_API_KEY}}'
                 },
                 "max_tokens": 100,
                  // These are the chat endpt paramters.

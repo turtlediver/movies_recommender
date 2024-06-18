@@ -12,6 +12,9 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 #import the movie recommendation code
 import recommendation
 
+#import config (for api keys)
+import config
+
 
 #instantiate the application
 app = Flask(__name__)
@@ -39,13 +42,15 @@ def recommend_movies():
 
         recs = recommendation.find_similar_movies(int(movie_id))
 
-        return render_template("recs.html", recs_data = recs.to_dict('index'), query_movie_title=search_result.iloc[0]['title'])
+        return render_template("recs.html", recs_data = recs.to_dict('index'), query_movie_title=search_result.iloc[0]['title'], 
+                               TMDB_API_KEY = config.TMDB_API_KEY, COHERE_API_KEY = config.COHERE_API_KEY)
         #jsonify(recs.to_dict(orient='index'))
 
     elif request.method=="GET":
         #returns a list of dictionaries. each dictionary is 1 row (i.e. 1 movie) in the recs dataframe
         # - the key is the movie's index in the movies dataframe
         return render_template("index.html")
+
 
 
 #if we call this app from the cmdline (as "python app.py"), 
