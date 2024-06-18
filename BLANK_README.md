@@ -18,35 +18,20 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+
 
 
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
-<h3 align="center">project_title</h3>
+
+<h3 align="center">REEL RECS</h3>
 
   <p align="center">
-    project_description
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    A movie recommendation app to find your next watch.
+    
   </p>
 </div>
 
@@ -83,9 +68,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+This application recommends a selection of 10 movies based on a movie title provided by the user. Recommendations are chosen based on Collaborative Filtering. We use a movie ratings dataset to look at all other movies liked by users who watched and liked (i.e. rated at least 5/10) the provided movie title. These users are Similar Users. Then, sort the movies based on how many users from Similar Users liked each movie. Finally, take the top 10 movies from the sorted set of movies.
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+Recommendations are further personalized with the help of Cohere AI Chat bot. On the recommended movies page, mousing over each movie's icon will reveal a short text explaining why the user will enjoy the recommendation, based on their inputted movie.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
