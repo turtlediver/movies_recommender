@@ -122,7 +122,7 @@ This is an example of how to list things you need to use the software and how to
      TMDB_API_KEY="<Your TMDB API key>"
      COHERE_API_KEY="<Your Cohere API key>"
      ```
-4. Run ```flask run``` in the root directory and open the 
+4. Run ```flask run``` in the root directory and open the localhost URL.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
