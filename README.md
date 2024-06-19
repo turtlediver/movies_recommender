@@ -109,7 +109,7 @@ This is an example of how to list things you need to use the software and how to
 * TMDB API Key
   - create an account on https://developer.themoviedb.org/docs/getting-started
 * Cohere API Key 
- - create an account on https://docs.cohere.com/docs/chat-api
+  - create an account on https://docs.cohere.com/docs/chat-api
 
 ### Installation
 
